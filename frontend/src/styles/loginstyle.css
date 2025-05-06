@@ -1,0 +1,78 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #464646;
+}
+
+.login-container {
+  background-color: #333333;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-container h1 {
+  color: #d1d1d1;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #d1d1d1;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #444;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #c5a576;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.login-btn:hover {
+  background-color: #b89665;
+}
+
+.signup-link {
+  margin-top: 1rem;
+  text-align: center;
+  color: #d1d1d1;
+}
+
+.signup-link button {
+  background: none;
+  border: none;
+  color: #c5a576;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.signup-link button:hover {
+  text-decoration: underline;
+}

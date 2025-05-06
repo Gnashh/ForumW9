@@ -1,0 +1,64 @@
+.ccontainer {
+	background-color: #d1d1d1;  
+    max-width: 830px;
+    height: 220px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.first{
+    background-color: #b6b6b6;
+    color: #363636;
+    max-width: 830px;
+    height: 60px;
+    width: 90%;
+    margin: 30px auto 0 auto; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.second{
+    background-color: #b6b6b6;
+    color: #363636;
+    max-width: 830px;
+    height: 60px;
+    width: 90%;
+    margin: 30px auto 0 auto; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button[name="cbutton"]{
+    border:none;
+    border-radius: 20%;
+    width: 16px;
+    height: 16px;
+    background-color: #363636;
+    color: #b6b6b6;
+    margin-left: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button[name="cbutton"]:hover {
+    background-color: #555555;
+}
+
+button[name="cbutton"].checked::before {
+    content: "\2713";
+    font-size: 14px;
+    color:#d1d1d1;
+}

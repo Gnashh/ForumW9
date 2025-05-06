@@ -1,0 +1,59 @@
+.App {
+  background-color: #464646;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  font-weight:550;
+  padding: 4%;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.title {
+  text-align: center;
+  align-items: center;
+  font-size: 40px;
+  color: #d1d1d1;
+  letter-spacing: 4px;
+}
+
+.info {
+  border: none;
+  font-size: 13px;
+  color: #c5a576;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: lighter;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3% 16% 0% 15%;
+  letter-spacing: 0.5px;
+}
+.id {display: inline-block;}
+.name {display: inline-block;}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16%;
+  color: #c5a576;
+  font-size: 14px;
+}
+
+.logout-btn {
+  background-color: #c5a576;
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.logout-btn:hover {
+  background-color: #b89665;
+}

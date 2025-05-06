@@ -1,0 +1,45 @@
+.button {
+	display: inline-block;
+	height: 40px;
+    width: 40px;
+	border: none;
+	border-radius: 6px;
+	font-weight: 600;
+	font-size: 15px;
+	cursor: pointer;
+	overflow: hidden;
+    background-color: #c5a576;
+    color: #262626;
+}
+
+.filterbutton {
+	display: inline-block;
+	height: 40px;
+    width: 150px;
+    padding-left: 15px;
+	border: none;
+	border-radius: 6px;
+    font-family: 'Roboto', sans-serif;
+	font-weight:600;
+	font-size: 15px;
+    letter-spacing: 0.5px;
+	cursor: pointer;
+	overflow: hidden;
+    background-color: #c5a576;
+    color: #262626;
+}
+
+.addfilter {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 6px 15% 10px 15%;
+}
+
+option {
+	font-family: 'Roboto', sans-serif;
+	font-weight:600;
+	font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
