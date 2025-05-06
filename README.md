@@ -1,289 +1,129 @@
-# Todo List Management Application
+# Todo List Management API
 
-A full-stack todo list management application with user authentication, two-factor authentication, and CRUD operations for todo items.
+A RESTful API for managing todo lists with user authentication, two-factor authentication, and CRUD operations.
 
-## Table of Contents
+## API Overview
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-- [Running the Application](#running-the-application)
-- [API Documentation](#api-documentation)
-- [Database](#database)
-- [Authentication](#authentication)
-- [Frontend](#frontend)
-- [Docker](#docker)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Features
-
-- **User Management**:
-  - Registration and login
-  - Profile management
-  - Two-factor authentication (2FA) using TOTP
-
-- **Todo Management**:
-  - Create, read, update, and delete todos
-  - Mark todos as active or finished
-  - Search functionality
-  - Todo descriptions and images
-
-- **Security**:
-  - JWT-based authentication
-  - Password hashing with bcrypt
-  - Optional two-factor authentication
-  - Protected routes
-
-- **API Documentation**:
-  - Swagger UI for API documentation and testing
+This backend service provides:
+- User registration and authentication
+- Two-factor authentication using TOTP
+- Todo item management (create, read, update, delete)
+- API documentation via Swagger UI
 
 ## Tech Stack
 
-### Backend
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web framework
-- **Sequelize** - SQL ORM for database operations
-- **PostgreSQL/SQLite** - Database options
-- **JWT** - Authentication mechanism
-- **Bcrypt** - Password hashing
-- **Speakeasy** - Two-factor authentication
-- **Swagger** - API documentation
-
-### Frontend
-- **React** - Frontend library
-- **React Router** - Navigation
-- **Axios** - HTTP client
-- **CSS/SCSS** - Styling
-
-## Project Structure
-
-```
-project-root/
-├── backend/                 # Backend code
-│   ├── config/              # Configuration files
-│   ├── controllers/         # Request handlers
-│   ├── middleware/          # Express middleware
-│   ├── models/              # Sequelize models
-│   ├── routes/              # API routes
-│   ├── utils/               # Utility functions
-│   ├── .env                 # Environment variables
-│   ├── index.js             # Entry point
-│   └── package.json         # Dependencies
-│
-├── frontend/                # Frontend code
-│   ├── public/              # Static files
-│   ├── src/                 # React components
-│   │   ├── components/      # Reusable components
-│   │   ├── pages/           # Page components
-│   │   ├── services/        # API services
-│   │   ├── App.js           # Main component
-│   │   └── index.js         # Entry point
-│   ├── .env                 # Environment variables
-│   └── package.json         # Dependencies
-│
-├── docker-compose.yml       # Docker configuration
-└── README.md                # Project documentation
-```
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm or yarn
-- PostgreSQL (optional, SQLite can be used for development)
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/todo-list-app.git
-   cd todo-list-app
-   ```
-
-2. Install backend dependencies:
-   ```bash
-   cd backend
-   npm install
-   ```
-
-3. Install frontend dependencies:
-   ```bash
-   cd ../frontend
-   npm install
-   ```
-
-### Environment Variables
-
-#### Backend (.env)
-
-```
-PORT=5000
-JWT_SECRET=your_jwt_secret_key
-DB_NAME=todolist
-DB_USER=postgres
-DB_PASSWORD=yourpassword
-DB_HOST=localhost
-DB_PORT=5432
-```
-
-#### Frontend (.env)
-
-```
-REACT_APP_API_URL=http://localhost:5000
-```
-
-## Running the Application
-
-### Backend
-
-```bash
-cd backend
-npm start
-```
-
-The server will run on http://localhost:5000 by default.
-
-### Frontend
-
-```bash
-cd frontend
-npm start
-```
-
-The React app will run on http://localhost:3000 by default.
+- **Runtime**: Node.js, Express.js
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JWT, bcrypt
+- **2FA**: Speakeasy (TOTP implementation)
+- **Documentation**: Swagger UI, swagger-jsdoc
 
 ## API Documentation
 
-The API documentation is available via Swagger UI at:
-
+Access the interactive API documentation at:
 ```
 http://localhost:5000/todolist/api-docs
 ```
 
-This provides an interactive interface to explore and test all API endpoints.
+## API Endpoints
 
-## Database
+### Authentication
 
-### Models
+- `POST /service/user/register` - Register a new user
+- `POST /service/user/login` - Authenticate a user
+- `POST /service/user/refresh_token` - Get a new access token
 
-#### User Model
-- `id`: Primary key
-- `personal_id`: Unique identifier
-- `user_image`: Profile image URL
-- `name`: User's name
-- `email`: User's email (unique)
-- `password`: Hashed password
-- `address`: User's address
-- `phone_number`: User's phone number
-- `otp_secret`: Secret for two-factor authentication
-- `otp_enabled`: Whether 2FA is enabled
-- `joinedAt`: Timestamp of registration
-- `updatedAt`: Timestamp of last update
+### User Management
 
-#### Todo Model
-- `id`: Primary key
-- `todo_name`: Name of the todo
-- `todo_image`: Image URL for the todo
-- `todo_desc`: Description of the todo
-- `todo_status`: Status (active/finished)
-- `userId`: Foreign key to User
-- `createdAt`: Timestamp of creation
-- `updatedAt`: Timestamp of last update
-
-### Database Configuration
-
-The application supports both SQLite (for development) and PostgreSQL (for production). The configuration is in `backend/config/database.js`.
-
-## Authentication
-
-### Registration
-Users can register with:
-- Personal ID
-- Name
-- Email
-- Password
-- Optional: Address and phone number
-
-### Login
-Users can log in with:
-- Email
-- Password
-- OTP code (if 2FA is enabled)
+- `GET /service/user/profile` - Get user profile
+- `PATCH /service/user/profile` - Update user profile
 
 ### Two-Factor Authentication
-- Users can enable 2FA from their profile
-- Uses TOTP (Time-based One-Time Password) algorithm
-- Compatible with authenticator apps like Google Authenticator
 
-## Frontend
+- `POST /service/user/2fa/generate` - Generate 2FA secret
+- `POST /service/user/2fa/verify` - Verify and enable 2FA
+- `POST /service/user/2fa/disable` - Disable 2FA
 
-The frontend is built with React and includes:
+### Todo Management
 
-- User authentication pages (login, register)
-- Todo management interface
-- Profile management
-- Two-factor authentication setup
-- Responsive design
+- `GET /service/todo` - Get all todos for authenticated user
+- `POST /service/todo` - Create a new todo
+- `GET /service/todo/:id` - Get a specific todo
+- `PATCH /service/todo/:id` - Update a todo
+- `DELETE /service/todo/:id` - Delete a todo
 
-## Docker
+## Data Models
 
-A Docker configuration is provided for easy deployment:
+### User Model
 
-```bash
-docker-compose up
+```
+{
+  personal_id: String,
+  user_image: String,
+  name: String,
+  email: String,
+  password: String (hashed),
+  address: String,
+  phone_number: String,
+  otp_secret: String,
+  otp_enabled: Boolean,
+  joinedAt: Date,
+  updatedAt: Date
+}
 ```
 
-This will start both the backend and frontend services.
+### Todo Model
 
-## Testing
-
-### Backend Tests
-
-```bash
-cd backend
-npm test
+```
+{
+  todo_name: String,
+  todo_image: String,
+  todo_desc: String,
+  todo_status: String (active/finished),
+  user: ObjectId (reference to User),
+  createdAt: Date,
+  updatedAt: Date
+}
 ```
 
-### Frontend Tests
+## Quick Setup
 
-```bash
-cd frontend
-npm test
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Create a `.env` file with:
+   ```
+   PORT=5000
+   CONNECTION_URL=mongodb://localhost:27017/todolist
+   REFRESH_TOKEN_SECRET=your_refresh_token_secret
+   ACCESS_TOKEN_SECRET=your_access_token_secret
+   ```
+4. Start the server:
+   ```
+   npm start
+   ```
+
+## Authentication Flow
+
+1. **Registration**: Create user account with email and password
+2. **Login**: Authenticate and receive JWT token
+3. **2FA Setup** (optional):
+   - Generate secret
+   - Verify with authenticator app
+   - Enable for account
+4. **Protected Routes**: Use JWT token in Authorization header
+
+## Docker Support
+
+A Dockerfile is included for containerization:
+
 ```
-
-## Deployment
-
-### Backend Deployment
-
-The backend can be deployed to any Node.js hosting service like Heroku, AWS, or DigitalOcean.
-
-### Frontend Deployment
-
-The React frontend can be built for production:
-
-```bash
-cd frontend
-npm run build
+docker build -t todo-api .
+docker run -p 5000:5000 todo-api
 ```
-
-The resulting build folder can be deployed to services like Netlify, Vercel, or GitHub Pages.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin feature-name`
-5. Submit a pull request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT
