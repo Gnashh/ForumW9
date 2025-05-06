@@ -123,7 +123,3 @@ A Dockerfile is included for containerization:
 docker build -t todo-api .
 docker run -p 5000:5000 todo-api
 ```
-
-## License
-
-MIT
